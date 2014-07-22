@@ -91,3 +91,25 @@ decodeModified list = concat $ map decodeElement list where
 encodeDirect :: Eq a => [a] -> [Encoding a]
 encodeDirect list = [if (length xs) == 1 then Single (head xs)
                      else Multiple (length xs) (head xs) | xs <- pack list]
+
+-- Problem 14
+dupli :: [a] -> [a]
+dupli [] = []
+dupli (x:xs) = x : x : (dupli xs)
+
+-- Problem 15
+repli :: [a] -> Int -> [a]
+repli [] _ = []
+repli _ 0 = []
+repli (x:xs) n = listx x n ++ (repli xs n) where
+    listx _ 0 = []
+    listx a n' = a : listx a (n'-1)
+
+-- Problem 16
+dropEvery :: [a] -> Int -> [a]
+dropEvery [] _ = []
+dropEvery l n
+    | length l < n = l
+    | otherwise =
+        let (first, rest) = splitAt n l in
+        take (length first-1) first ++ dropEvery rest n
