@@ -64,7 +64,7 @@ compress (x:y:ys)
 pack :: Eq a => [a] -> [[a]]
 pack [] = []
 pack list@(x:_) =
-    let (group, rest) = span (\e -> e == x) list in
+    let (group, rest) = span (== x) list in
     group : pack rest
 
 -- Problem 10
