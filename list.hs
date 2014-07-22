@@ -112,3 +112,12 @@ dropEvery l n
     | otherwise =
         let (first, rest) = splitAt n l in
         take (length first-1) first ++ dropEvery rest n
+
+-- Problem 17
+split :: [a] -> Int -> ([a], [a])
+split [] _ = ([], [])
+split xs n = split' [] xs n where
+    split' acc (x:xs') n'
+        | length acc < n' = ([], (x:xs'))
+        | length acc == n' = (acc, (x:xs'))
+        | otherwise = split' (acc ++ [x]) xs' n'
