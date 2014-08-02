@@ -121,3 +121,12 @@ split xs n = split' [] xs n where
         | length acc < n' = ([], (x:xs'))
         | length acc == n' = (acc, (x:xs'))
         | otherwise = split' (acc ++ [x]) xs' n'
+
+-- Problem 18
+slice :: [a] -> Int -> Int -> [a]
+slice [] _ _ = []
+slice (x:xs) start end = slice' (x:xs) (start-1) (end-1) 0 where
+    slice' (x':xs') start' end' cur
+        | cur < start' = slice' xs' start' end' (cur+1)
+        | cur >= start' && cur <= end' = x' : slice' xs' start' end' (cur+1)
+        | cur > end' = []
