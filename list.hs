@@ -146,3 +146,17 @@ rotate xs n = back ++ front where
 -- Problem 20
 removeAt :: Int -> [a] -> (a, [a])
 removeAt n xs = let (a, b) = splitAt (n-1) xs in (head b, a ++ tail b)
+
+--
+-- http://www.haskell.org/haskellwiki/99_questions/21_to_28
+--
+-- Problem 21
+insertAt :: a -> [a] -> Int -> [a]
+insertAt e xs n = let (a, b) = splitAt (n-1) xs in a ++ e : b
+
+-- Problem 22
+range :: Int -> Int -> [Int]
+range x y = range' x where
+    range' cur
+        | cur > y = []
+        | otherwise = cur : range' (cur+1)
