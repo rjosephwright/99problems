@@ -133,3 +133,12 @@ slice (x:xs) start end = slice' (x:xs) (start-1) (end-1) 0 where
         | cur < start' = slice' xs' start' end' (cur+1)
         | cur >= start' && cur <= end' = x' : slice' xs' start' end' (cur+1)
         | cur > end' = []
+
+-- Problem 19
+rotate :: [a] -> Int -> [a]
+rotate [] _ = []
+rotate xs n = back ++ front where
+    (front, back)
+        | n > 0 = splitAt n xs
+        | n < 0 = let (b, f) = splitAt (abs (n)) $ reverse xs in
+                  (reverse f, reverse b)
