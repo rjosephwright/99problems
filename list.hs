@@ -142,3 +142,7 @@ rotate xs n = back ++ front where
         | n > 0 = splitAt n xs
         | n < 0 = let (b, f) = splitAt (abs (n)) $ reverse xs in
                   (reverse f, reverse b)
+
+-- Problem 20
+removeAt :: Int -> [a] -> (a, [a])
+removeAt n xs = let (a, b) = splitAt (n-1) xs in (head b, a ++ tail b)
