@@ -18,6 +18,9 @@ myButLast (_:xs) = myButLast xs
 myButLast' :: [a] -> a
 myButLast' list = head (reverse (take 2 (reverse list)))
 
+myButLast'' :: [a] -> a
+myButLast'' = head . tail . reverse
+
 -- Problem 3
 elementAt :: [a] -> Int -> a
 elementAt list 1 = head list
