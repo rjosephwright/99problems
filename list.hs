@@ -38,10 +38,10 @@ myReverse list = (last list) : (myReverse $ init list)
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome list =
     first == (reverse second) where
-        (first, second) = split d m
+        (first, second) = halve d m
         (d, m) = (length list) `divMod` 2
-        split n 0 = splitAt n list
-        split n 1 = (take n list, drop (n+1) list)
+        halve n 0 = splitAt n list
+        halve n 1 = (take n list, drop (n+1) list)
 
 -- Problem 7
 data NestedList a = Elem a | List [NestedList a] deriving Show
